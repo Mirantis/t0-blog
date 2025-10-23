@@ -41,5 +41,10 @@ tmp/
 temp/
 *.tmp
 
+# Hugo generated files
+public/
+resources/
+.hugo_build.lock
+
 # Optional: Uncomment if using hugo.toml.example pattern
 # hugo.toml

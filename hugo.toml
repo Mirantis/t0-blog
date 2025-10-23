@@ -1,4 +1,4 @@
-baseURL = "https://blog.ospo-dev.miralabs.dev/"
+baseURL = "https://t0s-blog.ospo-dev.miralabs.dev/"
 languageCode = "en-us"
 title = "Miralabs OSPO Blog"
 theme = "pehtheme-hugo"
