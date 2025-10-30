@@ -1,6 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --dark-carbon: #3c3d42;
+  --saltwater: #1AAAFF;
+  --medium-carbon: #acb2c6;
+  --light-carbon: #e4e9f7;
+  /* --aquamarine: #00f7db;
+  --slime: #00f200; */
+  --gray-to-black: linear-gradient(90deg, var(--dark-carbon), black);
+  --black-to-gray: linear-gradient(104deg, black 25%, #32343B 67.88%);
+}
+@property --c {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #00FFF7;
+}
+@property --p {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 10%;
+}
+@property --l {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 10px;
+}
+@property --cghostlight {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: transparent;
+}
+@property --cghostdark {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #000;
+}
 
 @layer components {
 
@@ -10,7 +47,6 @@
 }
 
 @layer utilities {
-
 	.close {
 		display: none;
 	}
@@ -18,5 +54,195 @@
 	.open {
 		display: block;
 	}
-	
+	body {
+		background: var(--black-to-gray);
+		text-underline-offset: 4px;
+		color: white;
+		a {
+			text-decoration: underline;
+			&:hover {
+				text-decoration: none !important;
+			}
+		}
+		header {
+			background-color: black;
+			border: none;
+			button {
+				--c:#00FFF7;
+				--p:10%;
+				--l:10px;
+				--a:10deg;
+				cursor:pointer;
+				text-transform: uppercase;
+				text-decoration: none;
+				padding: 9px 20px 5px 20px;
+				border-radius: 20px;
+				font-weight: 900;
+				color: black !important;
+				border: 2px solid black;
+				transition:--c 0.7s,--p 0.5s,--l 0.3s;
+				background:linear-gradient(90deg, var(--c) var(--p),#00FFA0);
+				display: inline-block;
+				line-height: 1.25;
+				&:hover {
+					--c:black;
+					--p:100%;
+					--l:100%;
+					color: white !important;
+					border: 2px solid white;
+				}
+			}
+			button:has(span) {
+				padding: 6px !important;
+				span:has(.bi-egg-fried) {
+					display: none;
+				}
+			}
+			div:has(h1,h2) {
+				background-color: transparent !important;
+				h1, h2 {
+					color: white;
+					a {
+						text-decoration: none;
+					}
+				}
+			}
+			nav:has(ul) {
+				a {
+					color: white;
+					background-color: transparent !important;
+					border: none;
+				}
+			}
+		}
+		main {
+			padding-top: 60px;
+			#breadcrumb {
+				ul {
+					li {
+						color: white;
+					}
+				}
+			}
+			.grid {
+				li {
+					svg {
+						display: none;
+					}
+					&:hover {
+						background-color: var(--dark-carbon);
+					}
+				}
+			}
+			article {
+				color: black;
+				background-color: var(--light-carbon) !important;
+				&:hover {
+					background-color: white !important;
+				}
+			}
+			article.prose {
+				color: white !important;
+				strong, h2, h3, a {
+					color: white;
+				}
+				background-color: transparent !important;
+				.not-prose {
+					background-color: transparent;
+				}
+				ol {
+					li::marker {
+						color: white;
+					}
+				}
+				#taxonomy {
+					a {
+						--c:#00FFF7;
+						--p:10%;
+						--l:10px;
+						--a:10deg;
+						cursor:pointer;
+						text-transform: uppercase;
+						text-decoration: none;
+						padding: 9px 20px 5px 20px;
+						border-radius: 20px;
+						font-weight: 900;
+						color: black !important;
+						border: 2px solid black;
+						transition:--c 0.7s,--p 0.5s,--l 0.3s;
+						background:linear-gradient(90deg, var(--c) var(--p),#00FFA0);
+						display: inline-block;
+						line-height: 1.25;
+						&:hover {
+							--c:black;
+							--p:100%;
+							--l:100%;
+							color: white !important;
+							border: 2px solid white;
+						}
+					}
+				}
+				footer {
+					background: transparent !important;
+					border: none;
+					article {
+						h3, p {
+							color: black !important;
+						}
+						
+					}
+				}
+			}
+			aside {
+				article {
+					border-radius: 1rem;
+				}
+				&:hover {
+					h3 {
+						text-decoration: none !important;
+					}
+					
+				}
+			}
+		}
+		footer {
+			background: var(--gray-to-black) ! important;
+			color: white;
+			border-bottom-width: 10px;
+			border-bottom-style: solid; 
+			border-image: linear-gradient(90deg, #00F7FF, #00FFA0);
+			border-image-slice: 1;
+			a:not([aria-label]):has(svg) {
+				&:before {
+					content: "";
+					background-image: url("https://a.storyblok.com/f/189401/1200x420/867b855bb3/t0-logo-horizontal.png");
+					display: block;
+					background-size: cover;
+					width: 175px;
+					height: 60px;
+					margin-right: 20px;
+				}
+				svg, span {
+					display: none;
+				}
+			}
+			
+			[aria-label="GitHub"] {
+				svg {
+					display: inline;
+				}
+				padding: 10px;
+				background-color: var(--saltwater);
+				&:before {
+					background-image: none;
+				}
+				&:hover {
+					background-color: white !important;
+					svg {
+						color: black;
+					}
+				}
+			}
+		}
+	}
 }

@@ -5,7 +5,11 @@ module.exports = {
       "./themes/pehtheme-hugo/**/*.{html,js}"
     ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+            sans: ['Overpass', 'sans-serif'],
+          },
+    },
   },
   plugins: [
     require('@tailwindcss/typography')
