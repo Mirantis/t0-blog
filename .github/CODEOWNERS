@@ -1,0 +1,11 @@
+# CODEOWNERS file
+# When a pull request is opened, owners will be automatically requested as reviewers.
+# Syntax: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+#
+# Lines starting with '#' are ignored.
+# Each line is a file pattern followed by one or more owners.
+# Owners are indicated by GitHub username (with @ prefix) or email addresses.
+
+# Global owners - responsible for everything
+* @randybias @paniaho @bnallapeta @ramessesii2
+
