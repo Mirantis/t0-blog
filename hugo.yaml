@@ -1,6 +1,6 @@
 baseURL: https://t0-blog.ospo-dev.miralabs.dev/
 languageCode: en-us
-title: T minus T to the Zero
+title: T - t⁰ Blog ... Counting down to zero toil
 theme: pehtheme-hugo
 
 # Pagination
@@ -18,9 +18,9 @@ excludeFiles:
   - "themes/**/exampleSite/**"
 
 params:
-  description: An engineering and operations blog focused on reducing toil, cognitive load, and the inclusion of AIOps in everyday life
+  description: An engineering and operations blog focused on reducing toil, cognitive load, and the inclusion of automation and AIOps in everyday life
   author:
-    name: T0 Editorial Team
+    name: t⁰ Editorial Team
   mainSections: posts
   social:
     github: https://github.com/Mirantis
