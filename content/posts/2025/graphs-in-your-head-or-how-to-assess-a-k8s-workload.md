@@ -2,6 +2,8 @@
 # Post title - will be auto-generated from filename if not changed
 title: "Graphs in your head, or how to assess a k8s workload"
 
+slug: "how-to-assess-a-k8s-workload"
+
 # Publication date - automatically set to current date/time
 date: 2025-04-05T00:00:00Z
 

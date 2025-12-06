@@ -20,6 +20,11 @@ draft: true
 # Brief description/summary of the post (recommended for SEO and post listings)
 description: ""
 
+# URL slug (optional) - overrides the filename for the URL
+# If omitted, the filename is used (e.g., my-post-title.md → /posts/YYYY/my-post-title/)
+# Example: slug: "short-url" creates /posts/YYYY/short-url/
+slug: ""
+
 # Featured image path (optional) - place images in assets/images/<your-post-name>/
 # Example: "images/<your-post-name>/my-post-image.jpg"
 image: ""

@@ -2,6 +2,8 @@
 # Post title - will be auto-generated from filename if not changed
 title: "Kubernetes Control Plane Load Balancing(CPLB) Explained"
 
+slug: "kubernetes-cplb-explained"
+
 # Publication date - automatically set to current date/time
 date: 2025-02-20T00:00:00Z
 

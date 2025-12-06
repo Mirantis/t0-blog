@@ -42,6 +42,7 @@ tags: ["automation", "kubernetes", "devops"]
 categories: ["engineering", "operations", "tutorials"]
 draft: true
 description: "A brief description of your post"
+slug: "custom-url-slug"
 image: "images/your-post-name/featured-image.jpg"
 ---
 ```
@@ -58,7 +59,40 @@ image: "images/your-post-name/featured-image.jpg"
 
 - `tags` - Array of tags for categorization
 - `categories` - Array of categories (e.g., "engineering", "operations", "tutorials")
+- `slug` - Custom URL slug (see [URL slugs](#url-slugs) below)
 - `image` - Featured image path
+
+## URL slugs
+
+By default, Hugo generates the URL from the **filename**. For example:
+
+- File: `content/posts/2025/my-awesome-post.md`
+- URL: `https://t0.mirantis.com/posts/2025/my-awesome-post/`
+
+### Overriding the slug
+
+To use a different URL than the filename, add the `slug` field to your front matter:
+
+```yaml
+---
+title: "Everything You Ever Wanted to Know About Kubernetes Load Balancing"
+slug: "k8s-load-balancing-guide"
+---
+```
+
+This creates the URL: `https://t0.mirantis.com/posts/2025/k8s-load-balancing-guide/`
+
+### When to use a custom slug
+
+- Long titles: Keep URLs short while having descriptive titles
+- SEO: Target specific keywords in the URL
+
+### Slug best practices
+
+- Use lowercase letters and hyphens only
+- Keep slugs short but meaningful (3-5 words)
+- Avoid special characters and spaces
+- Once published, avoid changing slugs (breaks existing links)
 
 ## Images & media
 
@@ -127,15 +161,17 @@ hugo server -D
 
 - `title`, `date`, `author`, `description` set
 - `draft: false` for publishing
-- **Images**: All images placed in `assets/images/<your-post-name>/` directory
-- **Image paths**: References use `/images/<your-post-name>/filename.ext` format
+- URL slug: Consider if a custom `slug` is needed (long title? SEO keywords?)
+- Images: All images placed in `assets/images/<your-post-name>/` directory
+- Image paths: References use `/images/<your-post-name>/filename.ext` format
 - Images load correctly
 - Links/code blocks render correctly
 - Post matches the tone and headings of existing posts
 
 ## Conventions
 
-- **File name**: `snake-case-title.md` in `content/posts/YYYY/` directory (e.g., `content/posts/2025/my-post-title.md`)
+- **File name**: `kebab-case-title.md` in `content/posts/YYYY/` directory (e.g., `content/posts/2025/my-post-title.md`)
+- **URL slug**: Defaults to filename; override with `slug` front matter for shorter/custom URLs
 - **Date format**: ISO 8601 (`2025-01-15T00:00:00Z`)
 - **Code blocks**: Use fenced blocks with language hints (`bash`, `yaml`, `python`, etc.)
 - **Images**: Place in `assets/images/<post-name>/` and reference with `/images/<post-name>/file.png`
