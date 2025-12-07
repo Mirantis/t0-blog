@@ -67,7 +67,7 @@ image: "images/your-post-name/featured-image.jpg"
 By default, Hugo generates the URL from the **filename**. For example:
 
 - File: `content/posts/2025/my-awesome-post.md`
-- URL: `https://t0.mirantis.com/posts/2025/my-awesome-post/`
+- URL: `https://t0.mirantis.com/my-awesome-post/`
 
 ### Overriding the slug
 
@@ -80,7 +80,7 @@ slug: "k8s-load-balancing-guide"
 ---
 ```
 
-This creates the URL: `https://t0.mirantis.com/posts/2025/k8s-load-balancing-guide/`
+This creates the URL: `https://t0.mirantis.com/k8s-load-balancing-guide/`
 
 ### When to use a custom slug
 
@@ -92,6 +92,7 @@ This creates the URL: `https://t0.mirantis.com/posts/2025/k8s-load-balancing-gui
 - Use lowercase letters and hyphens only
 - Keep slugs short but meaningful (3-5 words)
 - Avoid special characters and spaces
+- Slugs must be unique across all posts
 - Once published, avoid changing slugs (breaks existing links)
 
 ## Images & media
@@ -171,7 +172,7 @@ hugo server -D
 ## Conventions
 
 - **File name**: `kebab-case-title.md` in `content/posts/YYYY/` directory (e.g., `content/posts/2025/my-post-title.md`)
-- **URL slug**: Defaults to filename; override with `slug` front matter for shorter/custom URLs
+- **URL slug**: Flat URLs at root (e.g., `/my-post/`); defaults to filename, override with `slug` front matter
 - **Date format**: ISO 8601 (`2025-01-15T00:00:00Z`)
 - **Code blocks**: Use fenced blocks with language hints (`bash`, `yaml`, `python`, etc.)
 - **Images**: Place in `assets/images/<post-name>/` and reference with `/images/<post-name>/file.png`

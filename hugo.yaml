@@ -13,6 +13,10 @@ summaryLength: 20
 # Content directory
 contentDir: content
 
+# Permalinks - flat URLs using slug (or filename if no slug specified)
+permalinks:
+  posts: /:slug/
+
 # Exclude patterns to prevent Hugo from reading theme exampleSite
 excludeFiles:
   - "themes/**/exampleSite/**"
