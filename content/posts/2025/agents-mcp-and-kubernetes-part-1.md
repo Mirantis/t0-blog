@@ -1,9 +1,9 @@
 ---
 # Post title - will be auto-generated from filename if not changed
-title: "Agents, MCP, and Kubernetes, Part 1: Building a Secure MCP Infrastructure"
+title: "Agents, MCP, and Kubernetes, Part 1"
 
 # Publication date - automatically set to current date/time
-date: 2025-12-05T10:00:00Z
+date: 2025-12-09T00:00:01Z
 
 # Author name - replace with your name
 author: "Prashant Ramhit"
