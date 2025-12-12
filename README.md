@@ -129,6 +129,25 @@ This creates the URL: `https://t0.mirantis.com/k8s-load-balancing-guide/`
    - Add meaningful alt text
    - Use PNG for screenshots, JPG for photos
 
+## Embedding YouTube videos
+
+Use Hugo's built-in YouTube shortcode to embed videos in your posts:
+
+```markdown
+{{< youtube VIDEO_ID >}}
+```
+
+**Finding the video ID:** Extract it from the YouTube URL. For example:
+
+- URL: `https://www.youtube.com/watch?v=yjDFOGxBs8k`
+- Video ID: `yjDFOGxBs8k`
+
+**Example usage:**
+
+```markdown
+{{< youtube id="yjDFOGxBs8k" title="Introduction to k0rdent" >}}
+```
+
 ## Local development
 
 Prerequisites:
