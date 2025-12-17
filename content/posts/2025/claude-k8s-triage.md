@@ -22,10 +22,11 @@ draft: false
 # Brief description/summary of the post (recommended for SEO and post listings)
 description: "Using Claude Skills and an operator-in-the-loop pattern to triage production Kubernetes outages with general-purpose agents"
 
-cover:
-  image: "../images/claude-k8s-triage/cover-agent-to-super-agent.png"
+#cover:
+image: "../images/claude-k8s-triage/cover-agent-to-super-agent.png"
   
-thumbnail: "../images/claude-k8s-triage/cover-agent-headshot.png"
+# Does not work
+#thumbnail: "../images/claude-k8s-triage/cover-agent-headshot.png"
 ---
 
 <style>
