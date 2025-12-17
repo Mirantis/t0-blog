@@ -22,7 +22,8 @@ draft: false
 # Brief description/summary of the post (recommended for SEO and post listings)
 description: "Using Claude Skills and an operator-in-the-loop pattern to triage production Kubernetes outages with general-purpose agents"
 
-image: "images/claude-k8s-triage/cover-agent-headshot.png"
+image: "images/claude-k8s-triage/cover-agent-to-super-agent.png"
+thumbnail: "images/claude-k8s-triage/cover-agent-headshot.png"
 ---
 
 <style>
@@ -54,7 +55,7 @@ These skills, in the form of [Claude Skills](https://claude.com/blog/skills), ar
 
 This feels like the 1-2 punch of turning general purpose agents into domain experts.
 
-![Skills plus tools diagram](images/claude-k8s-triage/domain-skills-domain-tools.png)
+![Skills plus tools diagram](../images/claude-k8s-triage/domain-skills-domain-tools.png)
 
 So what would this look like in practice?
 
