@@ -54,7 +54,7 @@ These skills, in the form of [Claude Skills](https://claude.com/blog/skills), ar
 
 This feels like the 1-2 punch of turning general purpose agents into domain experts.
 
-![Skills plus tools diagram](/images/claude-k8s-triage/domain-skills-domain-tools.png)
+![Skills plus tools diagram](images/claude-k8s-triage/domain-skills-domain-tools.png)
 
 So what would this look like in practice?
 
