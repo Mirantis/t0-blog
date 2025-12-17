@@ -23,7 +23,7 @@ draft: false
 description: "Using Claude Skills and an operator-in-the-loop pattern to triage production Kubernetes outages with general-purpose agents"
 
 #cover:
-image: "../images/claude-k8s-triage/cover-agent-to-super-agent.png"
+image: "/images/claude-k8s-triage/cover-agent-to-super-agent.png"
   
 # Does not work
 #thumbnail: "../images/claude-k8s-triage/cover-agent-headshot.png"
