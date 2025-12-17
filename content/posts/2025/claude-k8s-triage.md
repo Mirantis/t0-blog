@@ -2,6 +2,8 @@
 # Post title - will be auto-generated from filename if not changed
 title: "Troubleshooting Kubernetes with AI Agents"
 
+slug: "claude-k8s-triage"
+
 # Publication date - automatically set to current date/time
 date: 2025-12-17T00:00:00Z
 
@@ -20,13 +22,14 @@ draft: false
 # Brief description/summary of the post (recommended for SEO and post listings)
 description: "Using Claude Skills and an operator-in-the-loop pattern to triage production Kubernetes outages with general-purpose agents"
 
-image: "images/claude-k8s-triage/cover-agent-to-super-agent.png"
+image: "images/claude-k8s-triage/cover-screenshot.png"
 ---
 
 <style>
-article pre { overflow-x: auto; }
-article table th { background: #f5f5f5; color: #111; }
-article h2, article h3, article h4 { color: #111; }
+pre, .highlight { overflow-x: auto; }
+pre code { display: block; white-space: pre; }
+table th { background: #f5f5f5; color: #111; }
+h2, h3, h4 { color: #111; }
 </style>
 
 ## Introduction
