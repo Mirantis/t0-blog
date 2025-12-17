@@ -20,7 +20,7 @@ draft: false
 # Brief description/summary of the post (recommended for SEO and post listings)
 description: "Using Claude Skills and an operator-in-the-loop pattern to triage production Kubernetes outages with general-purpose agents"
 
-image: "images/claude-k8s-triage/domain-skills-domain-tools.png"
+image: "images/claude-k8s-triage/cover-agent-to-super-agent.png"
 ---
 
 ## Introduction
@@ -68,17 +68,15 @@ The k8s-troubleshooter’s core capabilities include:
 * Node health and cluster-wide diagnostics  
 * Wrap all of the above up in a comprehensive report when asked
 
-This skill runs an initial triage script for production issues, which does the following:
+This skill runs an initial triage script for production issues that:
 
-| Action/Check | Description/Details |
-| ----- | ----- |
-| Captures evidence | Preserves cluster state before investigation (nodes, pods, events, optional cluster-info dump) |
-| Checks control plane | Uses `/readyz?verbose` for component-level health status |
-| Assesses blast radius | Classifies impact: single pod, namespace, multiple namespaces, or cluster-wide |
-| Classifies symptoms | Detects crash loops, OOM, scheduling failures, DNS/network issues, storage problems |
-| Recommends workflows | Provides specific diagnostic scripts and commands based on detected symptoms |
-| Generates report | Creates markdown report with executive summary and text summary for quick reference |
-| Output | Triage report with blast radius, symptoms, recommended next steps, and captured evidence. |
+- Captures evidence before investigation (nodes, pods, events, optional cluster-info dump)
+- Checks control plane health using /readyz?verbose
+- Assesses blast radius (single pod, namespace, multiple namespaces, cluster-wide)
+- Classifies symptoms (crash loops, OOM, scheduling failures, DNS/network issues, storage problems)
+- Recommends workflows via specific diagnostic scripts and commands based on detected symptoms
+- Generates a markdown report with executive summary and text summary for quick reference
+- Outputs the triage report with blast radius, symptoms, recommended next steps, and captured evidence
 
 Claude uses this as guidance for its next steps, which then exercise other scripts, use kubectl commands directly, and allow it to “deep dive” into the various issues such that it can perform an initial root cause analysis.
 
@@ -90,33 +88,25 @@ Let’s find out!
 
 In our production failure scenario[^2] we have multiple pods in different states with different failure conditions as follows:
 
-```shell
-  🔥 Production Outage Scenario - READY
+**Production outage snapshot**
+- Namespace: prod-api
+- Time since deploy: ~85 seconds
+- Overall availability: 17% (1/6 services healthy)
 
-  Namespace: prod-api
-  Time: Just deployed (85 seconds ago)
+**Service status**
+- payment-service (0/2): ImagePullBackOff — CRITICAL (payments down)
+- auth-service (0/2): Init:CrashLoopBackOff — CRITICAL (auth down)
+- api-gateway (0/3): Error/CrashLoopBackOff — frontend down
+- user-service (0/2): CreateContainerConfigError — user APIs down
+- analytics-service (0/1): CrashLoopBackOff (OOM) — analytics offline
+- notification-service (2/2): Running
 
-  Service Status Overview
-
-  | Service                 | Replicas | Status                     | Impact                   |
-  |-------------------------|----------|----------------------------|--------------------------|
-  | payment-service ⚠️      | 0/2      | ImagePullBackOff           | CRITICAL - Payments down |
-  | auth-service ⚠️         | 0/2      | Init:CrashLoopBackOff      | CRITICAL - Auth down     |
-  | api-gateway             | 0/3      | Error/CrashLoopBackOff     | Frontend down            |
-  | user-service            | 0/2      | CreateContainerConfigError | User APIs down           |
-  | analytics-service       | 0/1      | CrashLoopBackOff (OOM)     | Analytics offline        |
-  | notification-service ✅ | 2/2      | Running                    | Working                  |
-
-  Overall Availability: 17% (1/6 services healthy)
-
-  Failure Types Present
-
-  - 🔴 Image pull errors (fake registry)
-  - 🔴 Init container failures (DB migration)
-  - 🔴 Application crashes (exit 137)
-  - 🔴 Config errors (missing Secret)
-  - 🔴 OOMKilled (memory limit)
-```
+**Failure types present**
+- Image pull errors (fake registry)
+- Init container failures (DB migration)
+- Application crashes (exit 137)
+- Config errors (missing Secret)
+- OOMKilled (memory limit)
 
 Granted this is a contrived scenario, but let’s see how it goes. Please note that I’m using completely different Claude Code instances to setup the production failure scenario and to do the troubleshooting so that there is no shared context.
 
@@ -124,7 +114,7 @@ Granted this is a contrived scenario, but let’s see how it goes. Please note t
 
 We pass the following prompt to Claude Code:
 
-```shell
+```
 Production outage in progress in my local Kubernetes cluster. The prod-api namespace has multiple services failing. Need immediate triage and root cause analysis.
 ```
 
@@ -134,7 +124,7 @@ For the sake of brevity, I’ll redact some of the entire process that Claude Co
 
 The first thing that Claude does is run the triage script that we have created:
 
-```shell
+```
 ⏺ Skill(k8s-troubleshooter)
 
 ⏺ I'll immediately run the incident triage script to assess the production outage in the prod-api namespace.
@@ -150,7 +140,7 @@ The first thing that Claude does is run the triage script that we have created:
 
 The full script results can be found [here](https://gist.github.com/randybias/11043d87a4966510ddb9c3ddaa25e90c), but the key is at the end where it gives Claude hints about what to do next:
 
-```shell
+```
 KUBERNETES INCIDENT TRIAGE SUMMARY
 Tue Dec 16 18:50:23 CET 2025
 
@@ -171,7 +161,7 @@ pending-pods: pod_diagnostics.sh
 
 At this point Claude uses the next steps to run pod by pod diagnostics. It also kicks off the use of a number kubectl commands to gather additional information for each pod failure.
 
-```shell
+```
 ⏺ I've identified several critical root causes. Let me now check the crashing services (api-gateway, analytics) to complete the picture.
 
 ⏺ Bash(kubectl logs -n prod-api api-gateway-5fb6547bc-2qp7l --previous --tail=30 2>&1)
@@ -199,7 +189,7 @@ At this point Claude uses the next steps to run pod by pod diagnostics. It also 
        Volumes:         <none>
      … +3 lines (ctrl+o to expand)
 
-⏺ Bash(kubectl get namespaces && echo "---" && kubectl get pods --all-namespaces -l 'app in (postgres,postgresql,mysql,mongodb,database)' -o wide)
+⏺ Bash(kubectl get namespaces && echo \"---\" && kubectl get pods --all-namespaces -l 'app in (postgres,postgresql,mysql,mongodb,database)' -o wide)
   ⎿  NAME                 STATUS   AGE
      default              Active   13h
      kube-node-lease      Active   13h
@@ -209,7 +199,7 @@ At this point Claude uses the next steps to run pod by pod diagnostics. It also 
 
 For brevity, I will redact some of the output, but you can find the complete report [here](https://gist.github.com/randybias/2f5a391b26bc27b801ec0814e46b766a).
 
-```shell
+```
 ⏺ ROOT CAUSE ANALYSIS COMPLETE
 
   I've identified the root causes of the production outage in the prod-api namespace. This appears to be a misconfigured deployment with multiple infrastructure dependencies missing.
