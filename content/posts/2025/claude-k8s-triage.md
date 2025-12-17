@@ -23,6 +23,12 @@ description: "Using Claude Skills and an operator-in-the-loop pattern to triage 
 image: "images/claude-k8s-triage/cover-agent-to-super-agent.png"
 ---
 
+<style>
+article pre { overflow-x: auto; }
+article table th { background: #f5f5f5; color: #111; }
+article h2, article h3, article h4 { color: #111; }
+</style>
+
 ## Introduction
 
 Recently, my team has been engaged with Mirantis customers who are keen to use custom agents for troubleshooting production Kubernetes clusters. While there has been a lot of significant work in applying agents to software development, there is not nearly as much activity around using agents to help with operations. I think this area, “AIOps”, is underserved and not well understood. There are MCP servers that can be used, but applying AIOps to Kubernetes is more than just technology—it’s also about process, best practices, and deliberateness. Letting an agent loose on your production systems probably isn’t the best first step.
@@ -68,15 +74,48 @@ The k8s-troubleshooter’s core capabilities include:
 * Node health and cluster-wide diagnostics  
 * Wrap all of the above up in a comprehensive report when asked
 
-This skill runs an initial triage script for production issues that:
+This skill runs an initial triage script for production issues, which does the following:
 
-- Captures evidence before investigation (nodes, pods, events, optional cluster-info dump)
-- Checks control plane health using /readyz?verbose
-- Assesses blast radius (single pod, namespace, multiple namespaces, cluster-wide)
-- Classifies symptoms (crash loops, OOM, scheduling failures, DNS/network issues, storage problems)
-- Recommends workflows via specific diagnostic scripts and commands based on detected symptoms
-- Generates a markdown report with executive summary and text summary for quick reference
-- Outputs the triage report with blast radius, symptoms, recommended next steps, and captured evidence
+<div style="overflow-x: auto;">
+<table>
+  <thead>
+    <tr>
+      <th>Action/Check</th>
+      <th>Description/Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Captures evidence</td>
+      <td>Preserves cluster state before investigation (nodes, pods, events, optional cluster-info dump)</td>
+    </tr>
+    <tr>
+      <td>Checks control plane</td>
+      <td>Uses /readyz?verbose for component-level health status</td>
+    </tr>
+    <tr>
+      <td>Assesses blast radius</td>
+      <td>Classifies impact: single pod, namespace, multiple namespaces, or cluster-wide</td>
+    </tr>
+    <tr>
+      <td>Classifies symptoms</td>
+      <td>Detects crash loops, OOM, scheduling failures, DNS/network issues, storage problems</td>
+    </tr>
+    <tr>
+      <td>Recommends workflows</td>
+      <td>Provides specific diagnostic scripts and commands based on detected symptoms</td>
+    </tr>
+    <tr>
+      <td>Generates report</td>
+      <td>Creates markdown report with executive summary and text summary for quick reference</td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Triage report with blast radius, symptoms, recommended next steps, and captured evidence</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 Claude uses this as guidance for its next steps, which then exercise other scripts, use kubectl commands directly, and allow it to “deep dive” into the various issues such that it can perform an initial root cause analysis.
 
@@ -114,7 +153,7 @@ Granted this is a contrived scenario, but let’s see how it goes. Please note t
 
 We pass the following prompt to Claude Code:
 
-```
+```text
 Production outage in progress in my local Kubernetes cluster. The prod-api namespace has multiple services failing. Need immediate triage and root cause analysis.
 ```
 
@@ -124,7 +163,7 @@ For the sake of brevity, I’ll redact some of the entire process that Claude Co
 
 The first thing that Claude does is run the triage script that we have created:
 
-```
+```text
 ⏺ Skill(k8s-troubleshooter)
 
 ⏺ I'll immediately run the incident triage script to assess the production outage in the prod-api namespace.
@@ -140,7 +179,7 @@ The first thing that Claude does is run the triage script that we have created:
 
 The full script results can be found [here](https://gist.github.com/randybias/11043d87a4966510ddb9c3ddaa25e90c), but the key is at the end where it gives Claude hints about what to do next:
 
-```
+```text
 KUBERNETES INCIDENT TRIAGE SUMMARY
 Tue Dec 16 18:50:23 CET 2025
 
@@ -161,7 +200,7 @@ pending-pods: pod_diagnostics.sh
 
 At this point Claude uses the next steps to run pod by pod diagnostics. It also kicks off the use of a number kubectl commands to gather additional information for each pod failure.
 
-```
+```text
 ⏺ I've identified several critical root causes. Let me now check the crashing services (api-gateway, analytics) to complete the picture.
 
 ⏺ Bash(kubectl logs -n prod-api api-gateway-5fb6547bc-2qp7l --previous --tail=30 2>&1)
@@ -189,7 +228,7 @@ At this point Claude uses the next steps to run pod by pod diagnostics. It also 
        Volumes:         <none>
      … +3 lines (ctrl+o to expand)
 
-⏺ Bash(kubectl get namespaces && echo \"---\" && kubectl get pods --all-namespaces -l 'app in (postgres,postgresql,mysql,mongodb,database)' -o wide)
+⏺ Bash(kubectl get namespaces && echo "---" && kubectl get pods --all-namespaces -l 'app in (postgres,postgresql,mysql,mongodb,database)' -o wide)
   ⎿  NAME                 STATUS   AGE
      default              Active   13h
      kube-node-lease      Active   13h
@@ -199,7 +238,7 @@ At this point Claude uses the next steps to run pod by pod diagnostics. It also 
 
 For brevity, I will redact some of the output, but you can find the complete report [here](https://gist.github.com/randybias/2f5a391b26bc27b801ec0814e46b766a).
 
-```
+```text
 ⏺ ROOT CAUSE ANALYSIS COMPLETE
 
   I've identified the root causes of the production outage in the prod-api namespace. This appears to be a misconfigured deployment with multiple infrastructure dependencies missing.
