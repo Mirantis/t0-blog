@@ -22,7 +22,7 @@ draft: false
 # Brief description/summary of the post (recommended for SEO and post listings)
 description: "Using Claude Skills and an operator-in-the-loop pattern to triage production Kubernetes outages with general-purpose agents"
 
-image: "images/claude-k8s-triage/cover-screenshot.png"
+image: "images/claude-k8s-triage/cover-agent-to-super-agent.png"
 ---
 
 <style>
@@ -130,25 +130,33 @@ Let’s find out!
 
 In our production failure scenario[^2] we have multiple pods in different states with different failure conditions as follows:
 
-**Production outage snapshot**
-- Namespace: prod-api
-- Time since deploy: ~85 seconds
-- Overall availability: 17% (1/6 services healthy)
+```text
+  🔥 Production Outage Scenario - READY
 
-**Service status**
-- payment-service (0/2): ImagePullBackOff — CRITICAL (payments down)
-- auth-service (0/2): Init:CrashLoopBackOff — CRITICAL (auth down)
-- api-gateway (0/3): Error/CrashLoopBackOff — frontend down
-- user-service (0/2): CreateContainerConfigError — user APIs down
-- analytics-service (0/1): CrashLoopBackOff (OOM) — analytics offline
-- notification-service (2/2): Running
+  Namespace: prod-api
+  Time: Just deployed (85 seconds ago)
 
-**Failure types present**
-- Image pull errors (fake registry)
-- Init container failures (DB migration)
-- Application crashes (exit 137)
-- Config errors (missing Secret)
-- OOMKilled (memory limit)
+  Service Status Overview
+
+  | Service                 | Replicas | Status                     | Impact                   |
+  |-------------------------|----------|----------------------------|--------------------------|
+  | payment-service ⚠️      | 0/2      | ImagePullBackOff           | CRITICAL - Payments down |
+  | auth-service ⚠️         | 0/2      | Init:CrashLoopBackOff      | CRITICAL - Auth down     |
+  | api-gateway             | 0/3      | Error/CrashLoopBackOff     | Frontend down            |
+  | user-service            | 0/2      | CreateContainerConfigError | User APIs down           |
+  | analytics-service       | 0/1      | CrashLoopBackOff (OOM)     | Analytics offline        |
+  | notification-service ✅ | 2/2      | Running                    | Working                  |
+
+  Overall Availability: 17% (1/6 services healthy)
+
+  Failure Types Present
+
+  - 🔴 Image pull errors (fake registry)
+  - 🔴 Init container failures (DB migration)
+  - 🔴 Application crashes (exit 137)
+  - 🔴 Config errors (missing Secret)
+  - 🔴 OOMKilled (memory limit)
+```
 
 Granted this is a contrived scenario, but let’s see how it goes. Please note that I’m using completely different Claude Code instances to setup the production failure scenario and to do the troubleshooting so that there is no shared context.
 
