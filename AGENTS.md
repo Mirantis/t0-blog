@@ -9,6 +9,10 @@
 - Generate a draft with `hugo new posts/YYYY/your-title.md`; use ISO dates and fill required front matter (`title`, `date`, `author`, `description`, `draft`).
 - Keep `draft: true` until ready; flip to `false` for publication.
 - Use clear headings, short paragraphs, and fenced code blocks with language hints (`bash`, `yaml`, `python`).
+- **Footnotes**: Use proper Markdown footnote syntax with colon after the marker:
+  - Reference in text: `some text[^1]`
+  - Definition at bottom: `[^1]: Footnote content here` (note the colon!)
+  - See `content/posts/2025/claude-k8s-triage.md` for examples
 
 ### Tag Conventions
 - Keep tags simple and concise; the blog's context helps readers understand

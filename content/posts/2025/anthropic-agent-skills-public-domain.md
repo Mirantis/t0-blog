@@ -90,4 +90,4 @@ Explore the Agent Skills platform and resources at [agentskills.io](https://agen
 * [Claude Agent Skills GitHub Examples](https://github.com/meetrais/claude-agent-skills) - Community implementations
 * [Troubleshooting Kubernetes with AI Agents](https://t0.mirantis.com/claude-k8s-triage/) - Real-world k8s AIOps example using Agent Skills
 
-[^1] For those of you who missed it, [Goose](https://block.xyz/inside/block-anthropic-and-openai-launch-the-agentic-ai-foundation), another general purpose agent like Claude Code and Codex, but open source, was released to the [Agentic AI Foundation (AAIF)](https://aaif.io).  I'm curious if something like Goose can be tweaked to be more operations-centric.
+[^1]: For those of you who missed it, [Goose](https://block.xyz/inside/block-anthropic-and-openai-launch-the-agentic-ai-foundation), another general purpose agent like Claude Code and Codex, but open source, was released to the [Agentic AI Foundation (AAIF)](https://aaif.io).  I'm curious if something like Goose can be tweaked to be more operations-centric.
