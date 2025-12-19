@@ -23,7 +23,7 @@ draft: false
 # Brief description/summary of the post (recommended for SEO and post listings)
 description: "Anthropic makes Agent Skills freely available to the developer community, accelerating AI agent development and innovation"
 
-image: "images/anthropic-agent-skills-public-domain/agent-in-an-ooda-loop.png"
+image: "/images/anthropic-agent-skills-public-domain/agent-in-an-ooda-loop.png"
 ---
 
 ## Overview
