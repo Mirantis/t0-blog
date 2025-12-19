@@ -6,7 +6,7 @@ title: "Anthropic Releases Agent Skills to Public Domain"
 slug: "agent-skills-go-public"
 
 # Publication date - automatically set to current date/time
-date: 2025-12-19T07:32:40Z
+date: 2025-12-19T07:37:00Z
 
 # Author name - replace with your name
 author: "Randy Bias"
@@ -38,13 +38,11 @@ Agent Skills have been broadly applied, but primarily to business and software d
 
 ## Agents for Operations Teams and AIOps?
 
-AIOps (AI for IT operations) applies AI and machine learning to automate and enhance IT operations, enabling faster detection, diagnosis, and resolution of issues.  The application of AI to operations is a woefully underserved and underrepresented area.  Right now the focus is on AI-assisted software development with tools like Cursor, Windsurf, Claude Code, Codex, Gemini, and many others.  Tools like Claude Code are clearly optimized for code development.  In fact, when you start Claude Code or Codex up they have many default commands like "/review", "/diff", and "/security-review".
+AIOps (AI for IT operations) applies AI and machine learning to automate and enhance IT operations, enabling faster detection, diagnosis, and resolution of issues.  The application of AI to operations is a woefully underserved and underrepresented area.  Right now the focus is on AI-assisted software development with tools like [Cursor](https://www.cursor.com), [Windsurf](https://codeium.com/windsurf), [Claude Code](https://www.anthropic.com/claude-code), [Codex](https://openai.com/index/openai-codex/), [Gemini](https://gemini.google.com), and many others[^1].  Tools like Claude Code are clearly optimized for code development.  In fact, when you start Claude Code or Codex up they have many default commands like "/review", "/diff", and "/security-review".
 
 Agent Skills could be transformative for operations teams. Rather than building custom agents from scratch, operators can leverage general-purpose agents like Claude Code and equip them with domain-specific skills. Early experiments, such as the [k8s-troubleshooter skill](https://t0.mirantis.com/claude-k8s-triage/) for Kubernetes triage, demonstrate how Agent Skills can turn a general-purpose agent into a domain expert capable of performing root cause analysis on production incidents.
 
 This pattern suggests a future where operators maintain libraries of reusable skills for their infrastructure, ride the innovation curve of general-purpose agents, and focus on encoding domain knowledge rather than agent logic. The result: faster incident response, consistent troubleshooting workflows, and reduced cognitive load during outages.
-
-For those of you who missed it, [Goose](https://block.xyz/inside/block-anthropic-and-openai-launch-the-agentic-ai-foundation), another general purpose agent like Claude Code and Codex, but open source, was released to the [Agentic AI Foundation (AAIF)](https://aaif.io).  I'm curious if something like Goose can be tweaked to be more operations-centric.
 
 What do I mean by operations-centric?
 
@@ -91,3 +89,5 @@ Explore the Agent Skills platform and resources at [agentskills.io](https://agen
 * [Agent Skills in the SDK](https://docs.claude.com/en/api/agent-sdk/skills) - SDK integration guide
 * [Claude Agent Skills GitHub Examples](https://github.com/meetrais/claude-agent-skills) - Community implementations
 * [Troubleshooting Kubernetes with AI Agents](https://t0.mirantis.com/claude-k8s-triage/) - Real-world k8s AIOps example using Agent Skills
+
+[^1] For those of you who missed it, [Goose](https://block.xyz/inside/block-anthropic-and-openai-launch-the-agentic-ai-foundation), another general purpose agent like Claude Code and Codex, but open source, was released to the [Agentic AI Foundation (AAIF)](https://aaif.io).  I'm curious if something like Goose can be tweaked to be more operations-centric.
