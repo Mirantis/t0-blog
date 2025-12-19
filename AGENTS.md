@@ -100,7 +100,7 @@ After pushing commits, always verify the build and deployment:
    Monitor an active deployment in real-time.
 
 4. **Check the preview site**:
-   - Preview URL: https://randybias.github.io/t0-blog/
+   - Access your fork's GitHub Pages preview URL (typically `https://<username>.github.io/<repo-name>/`)
    - Verify your post appears correctly with images displaying properly
    - Test all links and formatting before creating a PR to production
 
