@@ -85,6 +85,45 @@ After pushing commits, always verify the build and deployment:
 - Check links, images, and code snippets render correctly; prefer concise examples over theory.
 
 ## Commit & PR Guidelines
-- Commits: short imperative subject (e.g., `add post on aiops runbooks`); one logical change per commit.
-- Pull requests: include a brief summary, linked issue (if any), and confirm the post-specific checklist (front matter complete, images in the correct directory, `draft` flipped when publishing).
+
+### Commits
+- Short imperative subject (e.g., `add post on aiops runbooks`)
+- One logical change per commit
+- Follow Conventional Commits format when appropriate
+
+### Pull Requests
+When creating PRs to the production blog (Mirantis/t0-blog), use this format:
+
+**Summary Section** (1-2 paragraphs):
+- Brief description of the blog post topic and key themes
+- Blog content speaks for itself - avoid extensive detail
+- **Do NOT include preview URLs** (keep unpublished content private)
+
+**Documentation Updates Section** (if applicable):
+- Document any AGENTS.md improvements
+- Note any workflow or process changes
+- Keep this section detailed - helps future contributors
+
+**Checklist**:
+- [ ] Blog post content complete
+- [ ] Frontmatter properly configured
+- [ ] Images in correct location (`assets/images/`)
+- [ ] Draft mode disabled
+- [ ] Tags follow conventions (no tool names, no category overlap)
+- [ ] Footnotes use proper Markdown syntax (if applicable)
+- [ ] AGENTS.md updated with learnings (if applicable)
+
+**What NOT to include**:
+- Detailed blog post content breakdown (readers can see the post)
+- Preview URLs (keeps content private until publication)
+- Excessive bullet points about post topics
+- Line-by-line frontmatter details
+
+**Example PR command**:
+```bash
+gh pr create --repo Mirantis/t0-blog \
+  --title "Add blog post: Your Title Here" \
+  --body "$(cat your-pr-template.md)"
+```
+
 - Do not modify theme/config unless the task explicitly requires it; note any deviations in the PR description.
