@@ -21,7 +21,7 @@ categories: ["operations", "aiops"]
 draft: false
 
 # Brief description/summary of the post (recommended for SEO and post listings)
-description: "Anthropic makes Agent Skills freely available to the developer community, accelerating AI agent development and innovation"
+description: "Anthropic releases Agent Skills as an open standard: turning general-purpose agents into AIOps and Kubernetes triage assistants with repeatable, safer workflows."
 
 image: "/images/anthropic-agent-skills-public-domain/agent-in-an-ooda-loop.png"
 ---
