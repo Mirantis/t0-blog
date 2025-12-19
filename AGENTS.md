@@ -10,6 +10,17 @@
 - Keep `draft: true` until ready; flip to `false` for publication.
 - Use clear headings, short paragraphs, and fenced code blocks with language hints (`bash`, `yaml`, `python`).
 
+### Tag Conventions
+- Keep tags simple and concise; the blog's context helps readers understand
+- Prefer shorter, simpler versions of tags:
+  - Use `skills` instead of `agent-skills`
+  - Use `operations` instead of `it-operations`
+  - Use `triage` instead of `incident-triage`
+  - Conceptual tags like `ooda-loop` are fine
+- **DO NOT** tag specific software or tools (e.g., avoid tags like `goose`, `claude-code`, `kubernetes-tool-name`)
+- Focus tags on concepts, methodologies, and domains rather than specific implementations
+- All tags should be lowercase with hyphens for multi-word tags (e.g., `aiops`, `cloud-native`)
+
 ## Assets & Images
 - Create the directory for post images: `mkdir -p assets/images/<slug>/` where `<slug>` matches the post's slug or a descriptive name derived from the filename.
 - Copy image files to `assets/images/<slug>/`; keep files under ~1 MB; prefer PNG for screenshots, JPG for photos.
