@@ -6,16 +6,16 @@ title: "Anthropic Releases Agent Skills to Public Domain"
 slug: "agent-skills-go-public"
 
 # Publication date - automatically set to current date/time
-date: 2025-12-19T00:00:00Z
+date: 2025-12-19T07:32:40Z
 
 # Author name - replace with your name
 author: "Randy Bias"
 
 # Tags for categorizing content (e.g., automation, mlops, devops, aiops)
-tags: ["ai", "agentic-ai", "agent-skills", "anthropic"]
+tags: ["skills", "agents", "kubernetes", "triage", "ooda-loop", "anthropic"]
 
 # Categories for broader grouping (e.g., engineering, operations, tutorials)
-categories: ["engineering", "news"]
+categories: ["operations", "aiops"]
 
 # Set to false when ready to publish
 draft: false
