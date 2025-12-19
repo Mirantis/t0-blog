@@ -34,7 +34,7 @@ Anthropic just re-released Claude Skills as Agent Skills, a general purpose spec
 
 Agent Skills are structured packages containing instructions, scripts, and resources that enable AI agents to perform tasks more accurately and efficiently. They provide procedural knowledge and specific context, allowing agents to extend their capabilities dynamically. Agents can use skills to gain domain expertise, acquire new capabilities like creating presentations or analyzing datasets, and execute repeatable workflows consistently. Originally developed by Anthropic and [released as an open standard](https://www.anthropic.com/news/skills), Agent Skills promote interoperability and reusability across different AI agent products.
 
-Agent Skills have been broadly applied, but primarily to business and software development workflows. Unfortunately, I have found few robust and thoughtful applications for IT operations.  I think this about to change, or it will, if I have any say in the matter. 🙂 {{< emoji ":smile:" >}} 
+Agent Skills have been broadly applied, but primarily to business and software development workflows. Unfortunately, I have found few robust and thoughtful applications for IT operations.  I think this about to change, or it will, if I have any say in the matter. 🙂 
 
 ## Agents for Operations Teams and AIOps?
 
