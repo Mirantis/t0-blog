@@ -14,6 +14,38 @@
   - Definition at bottom: `[^1]: Footnote content here` (note the colon!)
   - See `content/posts/2025/claude-k8s-triage.md` for examples
 
+## Post Review & Finalization
+
+**IMPORTANT**: Once the blog post content is mostly written, actively revisit and refine the frontmatter:
+
+### Frontmatter Review Checklist
+1. **Description**: Review and improve the SEO description based on the actual content
+   - Should be compelling and accurately reflect what readers will learn
+   - Include key concepts and value proposition
+   - Keep it concise but informative (1-2 sentences)
+
+2. **Tags**: Verify tags match the actual content topics
+   - Remove any tags that don't align with the final content
+   - Add tags for key concepts that emerged during writing
+   - Ensure tags follow conventions (simple, no tools, no category overlap)
+
+3. **Categories**: Confirm categories are appropriate for the final content
+   - Ensure they accurately represent the post's domain
+   - Verify no overlap with tags
+
+4. **Title**: Reconsider if the title accurately captures the content
+   - Should be clear, specific, and engaging
+   - Reflects the actual focus of the piece
+
+5. **Slug**: Verify the URL slug is appropriate and won't need to change
+
+### AI Agent Workflow
+When working with AI agents on blog posts:
+- After content is substantially complete, the agent should **proactively review** all frontmatter
+- Agent should provide **specific recommendations** for improving description, tags, and categories based on the actual content
+- Agent should **prompt the writer** to approve or modify these recommendations
+- Do not assume initial placeholder frontmatter is final
+
 ### Tag Conventions
 - Keep tags simple and concise; the blog's context helps readers understand
 - Prefer shorter, simpler versions of tags:
