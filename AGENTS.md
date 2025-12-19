@@ -20,6 +20,7 @@
 - **DO NOT** tag specific software or tools (e.g., avoid tags like `goose`, `claude-code`, `kubernetes-tool-name`)
 - Focus tags on concepts, methodologies, and domains rather than specific implementations
 - All tags should be lowercase with hyphens for multi-word tags (e.g., `aiops`, `cloud-native`)
+- **IMPORTANT**: Tags and categories must never overlap. If a term is used as a category (e.g., `operations`, `engineering`), do not also use it as a tag. Keep the taxonomies separate and distinct.
 
 ## Assets & Images
 - Create the directory for post images: `mkdir -p assets/images/<slug>/` where `<slug>` matches the post's slug or a descriptive name derived from the filename.
