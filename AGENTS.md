@@ -2,7 +2,7 @@
 
 ## Project Structure & Workflow
 - Content lives in `content/posts/YYYY/slug.md`; keep filenames snake-case and year-based (e.g., `content/posts/2025/control-plane-basics.md`).
-- Post assets go in `static/images/<slug>/`; reference them as `/images/<slug>/file.png` (WITH leading slash) in frontmatter. See `content/posts/2025/claude-k8s-triage.md` as the reference format.
+- Post assets go in `assets/images/<slug>/`; reference them as `/images/<slug>/file.png` (WITH leading slash) in frontmatter. See `content/posts/2025/claude-k8s-triage.md` as the reference format.
 - Theme and config files (e.g., `hugo.yaml`, `themes/`) should be left untouched unless explicitly requested.
 
 ## Create or Edit Posts
@@ -11,15 +11,15 @@
 - Use clear headings, short paragraphs, and fenced code blocks with language hints (`bash`, `yaml`, `python`).
 
 ## Assets & Images
-- Create the directory for post images: `mkdir -p static/images/<slug>/` where `<slug>` matches the post's slug or a descriptive name derived from the filename.
-- Copy image files to `static/images/<slug>/`; keep files under ~1 MB; prefer PNG for screenshots, JPG for photos.
-- **IMPORTANT**: Reference the cover/featured image in front matter WITH a leading slash: `image: "/images/<slug>/filename.png"` (note: the path is `/images/` not `/static/images/`). See `content/posts/2025/claude-k8s-triage.md` as the reference format.
+- Create the directory for post images: `mkdir -p assets/images/<slug>/` where `<slug>` matches the post's slug or a descriptive name derived from the filename.
+- Copy image files to `assets/images/<slug>/`; keep files under ~1 MB; prefer PNG for screenshots, JPG for photos.
+- **IMPORTANT**: Reference the cover/featured image in front matter WITH a leading slash: `image: "/images/<slug>/filename.png"` (note: Hugo processes `assets/images/` and serves it at `/images/`). See `content/posts/2025/claude-k8s-triage.md` as the reference format.
 - Set `slug: "<slug>"` in front matter to keep URLs stable across environments.
 - Avoid using emoji shortcodes in posts as they may cause build failures if the theme doesn't support them.
 - Example workflow:
   ```bash
-  mkdir -p static/images/anthropic-agent-skills-public-domain
-  cp ~/Downloads/cover-image.png static/images/anthropic-agent-skills-public-domain/
+  mkdir -p assets/images/anthropic-agent-skills-public-domain
+  cp ~/Downloads/cover-image.png assets/images/anthropic-agent-skills-public-domain/
   # Then in frontmatter: image: "/images/anthropic-agent-skills-public-domain/cover-image.png"
   ```
 
