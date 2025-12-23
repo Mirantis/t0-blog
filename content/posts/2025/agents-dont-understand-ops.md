@@ -4,7 +4,7 @@ date: 2025-12-23T00:00:00Z
 author: "Randy Bias"
 tags: []
 categories: []
-draft: true
+draft: false
 description: "A quick look at why today's general purpose agents like Claude and Codex are over-indexed on code development and how to change it."
 slug: "agents-dont-understand-ops"
 image: ""
