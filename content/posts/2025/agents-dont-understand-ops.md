@@ -42,15 +42,21 @@ Now that Goose has been donated to the AAIF, there is a distinct opportunity to 
 
 The path to zero toil for operators, developers, platform engineers, and DevOps teams leads through applying AIOps to IT operations.  We can't reduce toil without agents that are designed to remove that toil.  Toil doesn't just exist in software development land.  It exists across the entire IT landscape.  It's an imperative that we figure out how to apply agentic means to that entire IT landscape.  We need discipline-specific agents that can inherit domain specific knowledge and tools to truly become superhuman:
 
+```text
 <discipline-specific-system-prompts> + <domain skills> + <domain tools>
+```
 
 In other words:
 
+```text
 <IT Operations Discipline> + <Networking Skills> + <Networking Tools>
+```
 
 OR
 
+```text
 <IT Operations Discipline> + <Kubernetes Skills> + <Kubernetes Tools>
+```
 
 As usual, the future is here, it's just not evenly distributed.
 
