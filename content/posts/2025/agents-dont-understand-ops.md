@@ -1,13 +1,13 @@
 ---
 title: "Today's General Purpose Agents Don't Understand Ops"
-date: 2025-12-23T00:00:00Z
+date: 2026-01-02T00:00:00Z
 author: "Randy Bias"
 tags: ["agents", "aiops", "ops", "system-prompts", "goose", "claude"]
 categories: ["operations", "aiops"]
 draft: false
 description: "A quick look at why today's general purpose agents like Claude and Codex are over-indexed on code development and how to change it."
 slug: "agents-dont-understand-ops"
-image: "/images/agents-dont-understand-ops/confused-robot-blast-radius.png"
+image: "/images/agents-dont-understand-ops/confused-robot-blast-radius.jpg"
 ---
 
 ## Agents Don't Know Ops
