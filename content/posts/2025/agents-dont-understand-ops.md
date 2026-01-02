@@ -135,7 +135,6 @@ You have access to:
 Your role is to apply universal IT operations discipline while
 leveraging the right skills and tools for the situation.
 ```
-
 The core bias here is the idea that Agent Skills are effectively a sort
 of runbook. You are going to develop the for specific areas of
 technology, specific vendors, specific parts of your systems, etc. These
@@ -144,7 +143,6 @@ generic tools, tools specific to your business, etc) and that the Agent
 Skill definitions provide the roadmap to efficient usage of those
 specific tools. I believe this is where we wind up long term and it's
 best to crystallize our focus now.
-
 ```markdown
 ## Core Principles
 
@@ -184,9 +182,7 @@ best to crystallize our focus now.
 - Recognize security incidents require special handling (see Security
   Incidents)
 ```
-
 ## Conclusion
-
 Agents don't know Ops, but they should. We have very clear guide posts
 for how to make general purpose agents experts in particular areas, but
 it is incumbent upon us to deliver the skills and tools necessary for an
