@@ -13,8 +13,8 @@
 				</span>
 			</button>
 			<div class="relative rounded-full py-1.5 px-6 bg-zinc-100 hover:bg-zinc-200 text-xl font-bold uppercase mx-2">
-				{{ if .IsHome}}<h1><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
-			{{ else }}<h2><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h2>{{ end }}
+				{{ if .IsHome}}<h1 style="display:flex;"><img src="https://a.storyblok.com/f/189401/500x500/8985d28bbb/image.png" style="max-height: 20px; margin-right:10px" /><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+			{{ else }}<h2 style="display:flex;"><img src="https://a.storyblok.com/f/189401/500x500/8985d28bbb/image.png" style="max-height: 20px; margin-right:10px" /><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h2>{{ end }}
 			</div>
 		</div>
 		<div class="flex items-center ml-auto">
