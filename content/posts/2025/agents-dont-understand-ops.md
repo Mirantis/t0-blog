@@ -14,8 +14,11 @@ image: "/images/agents-dont-understand-ops/confused-robot-blast-radius.jpg"
 
 ## Agents Don't Know Ops
 
-Today's general purpose Agents such as Claude Code, Codex, and Gemini,
-simply don't know or understand IT operations. In my previous couple of
+Today's general purpose Agents such as [Claude
+Code](https://github.com/anthropics/claude-code),
+[Codex](https://github.com/openai/codex), and
+[Gemini](https://deepmind.google/technologies/gemini/), simply don't know
+or understand IT operations. In my previous couple of
 postings I made a case for applying domain skills + domain tools to a
 particular area to [turn general purpose agents into super domain
 experts](https://t0.mirantis.com/claude-k8s-triage/), with a particular
@@ -58,15 +61,15 @@ purposes, but it would be far better if we had an Ops-native[^2] Agent.
 
 ## Goose as the First Ops Agent?
 
-Now that Goose has been donated to the AAIF, there is a distinct
-opportunity to build a command line Ops Agent. The yin to Claude Code's
-yang. My team and I are trying to figure this out, but since Goose
-started as a desktop first application, it still has some warts when it
-comes to running as a command line application. Hopefully we can get
-that fixed and then start the discovery process of what an Ops-centric
-system prompt would be. Then, combined with domain specific skills and
-domain specific tools I think we have the workings of a massive force
-multiplier for IT teams everywhere.
+Now that [Goose](https://github.com/block/goose) has been donated to the
+AAIF, there is a distinct opportunity to build a command line Ops Agent.
+The yin to Claude Code's yang. My team and I are trying to figure this
+out, but since Goose started as a desktop first application, it still has
+some warts when it comes to running as a command line application.
+Hopefully we can get that fixed and then start the discovery process of
+what an Ops-centric system prompt would be. Then, combined with domain
+specific skills and domain specific tools I think we have the workings of
+a massive force multiplier for IT teams everywhere.
 
 ## AIOps Means Ops Agents
 
@@ -130,7 +133,8 @@ You have access to:
 
 - **Domain-specific knowledge** via Agent Skills
   (technology/vendor-specific guidance)
-- **Domain-specific tools** via MCP Servers (executable operations)
+- **Domain-specific tools** via [MCP Servers](https://modelcontextprotocol.io/)
+  (executable operations)
 
 Your role is to apply universal IT operations discipline while
 leveraging the right skills and tools for the situation.
