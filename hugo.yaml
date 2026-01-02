@@ -1,6 +1,6 @@
 baseURL: https://t0.mirantis.com/
 languageCode: en-us
-title: T - t⁰ Blog ... Counting down to zero toil
+title: T - t0 Blog ... Counting down to zero toil
 theme: pehtheme-hugo
 
 # Pagination
@@ -24,7 +24,7 @@ excludeFiles:
 params:
   description: An engineering and operations blog focused on reducing toil, cognitive load, and the inclusion of automation and AIOps in everyday life
   author:
-    name: t⁰ Editorial Team
+    name: t0 Editorial Team
   mainSections: posts
   social:
     github: https://github.com/Mirantis
