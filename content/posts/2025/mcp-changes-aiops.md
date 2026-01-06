@@ -11,7 +11,7 @@ tags: ["mcp", "aiops", "agents", "kubernetes", "triage"]
 
 categories: ["engineering", "operations"]
 
-draft: true
+draft: false
 
 description: "Building Nightcrier, an automated triage system that uses MCP events and general-purpose AI agents to investigate production Kubernetes failures"
 
