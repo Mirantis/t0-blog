@@ -148,6 +148,13 @@ After pushing commits, always verify the build and deployment:
 4. Visit preview URL to visually verify the post
 5. Only create PR to production blog after successful preview verification
 
+### Claude Code Browser Integration
+To enable Claude Code to review blog posts live on the GitHub Pages preview site, start Claude Code with the `--chrome` flag:
+```bash
+claude --chrome
+```
+This allows Claude to navigate to the preview URL, take screenshots, verify images load correctly, check link formatting, and identify visual issues without requiring manual verification.
+
 ## Quality & Style
 - Write in an instructional, engineering-focused tone; avoid marketing language.
 - Use consistent casing: headings in Title Case; filenames in snake-case; tags/categories in lowercase.
