@@ -18,10 +18,10 @@ description: "Building Nightcrier, an automated triage system that uses MCP even
 image: "/images/mcp-changes-aiops/cover.jpeg"
 ---
 
-Sometimes you just have to scratch an itch. So, over this recent holiday
-season when things were slow I decided to test some ideas I had. Namely,
-how will Model Context Protocol (MCP), Agent Skills, and general purpose
-agents impact operations? Not software development, but IT operations and
+[Sometimes you just have to scratch an itch.](/agents-dont-understand-ops/)
+So, over this recent holiday season when things were slow I decided to test
+some ideas I had. Namely, how will [Model Context Protocol (MCP)](https://modelcontextprotocol.io/),
+Agent Skills, and general purpose agents impact operations? Not software development, but IT operations and
 the management of systems, networking, storage, virtualization, containers,
 applications, and so on. In the past year, incredible changes to software
 development have shown how artificial intelligence is changing the way we
@@ -32,11 +32,12 @@ supplants DevOps?
 My goal was to build a proof of concept system that would do several
 things:
 
-1. Exercise parts of the MCP specification that are operations-friendly,
-   but are currently underutilized or not even utilized at all
+1. Exercise parts of the [MCP specification](https://modelcontextprotocol.io/specification)
+   that are operations-friendly, but are currently underutilized or not
+   even utilized at all
 2. Understand how to build an operations-centric workflow of general-purpose
-   AI agents such as Claude Code that are **not** similar to software
-   engineering workflows
+   AI agents such as [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
+   that are **not** similar to software engineering workflows
 3. Prove that such a workflow could be arbitrarily extended by changing AI
    agent context, tools, and capabilities without changing code; i.e.
    without the use of a custom agent
@@ -75,9 +76,10 @@ where they overlap and share interests (e.g. CI/CD pipelines).
 Put simply, I built an automated triage and investigation system for system
 faults that is powered by general purpose AI agents and triggered by faults
 in production automatically. The idea was to see if we could create a
-"virtual SRE" or "automated triage agent" that could do the heavy lifting
-of some of the more time consuming parts of performing root cause analysis,
-event correlation, and related tasks that are part of any triage process.
+"virtual [SRE](https://sre.google/sre-book/introduction/)" or "automated
+triage agent" that could do the heavy lifting of some of the more time
+consuming parts of performing root cause analysis, event correlation, and
+related tasks that are part of any triage process.
 
 To that end, I looked at some of the parts of the MCP protocol that can be
 used for reacting to changes in real time such as the ability for
@@ -101,23 +103,26 @@ Nightcrier, at its heart, is a very simple system. It is composed of:
 - MCP listeners subscribing to events sent from MCP servers
 - An incident handler that manages event state, triggers triage runs, and
   orchestrates the process
-- Triage agents using general purpose agents such as Claude Code, Codex,
-  Gemini, or Goose
+- Triage agents using general purpose agents such as Claude Code,
+  [Codex](https://openai.com/index/openai-codex/),
+  [Gemini](https://ai.google.dev/gemini-api/docs), or
+  [Goose](https://github.com/block/goose)
 - Specialized context and tools:
   - Constructed triage prompt
   - Incident context and information
-  - Agent Skills for Kubernetes clusters troubleshooting
-  - Kubernetes MCP servers
+  - [Agent Skills for Kubernetes clusters troubleshooting](https://github.com/randybias/k8s4agents)
+  - [Kubernetes MCP servers](https://github.com/strowk/mcp-k8s-go)
   - Kubernetes API endpoint access
 
 The workflow is also simple:
 
-- Production event classified as a "fault" (e.g. pod in CrashLoopBackoff)
+- Production event classified as a "fault" (e.g. pod in
+  [CrashLoopBackoff](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-restarts))
   is emitted
 - Fault is received, recorded, and tracked through its lifecycle
 - An investigation is started by the triage agent
-- The triage agent runs in a sandboxed and controlled environment via k8s
-  Jobs
+- The triage agent runs in a sandboxed and controlled environment via
+  [k8s Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 - A report is finished and uploaded to an object storage system
 - Operators are notified (in this case via Slack)
 
@@ -208,9 +213,9 @@ cool, so I'll just mention them here briefly.
 
 **Scoped and timebound Kube tokens** - it's only a manual process right
 now, but the triage agents are passed read-only scope and time bound
-Kubernetes authorization tokens for talking to the k8s API. In the future
-this could be minted by the k8s MCP server and passed in the original fault
-event.
+[Kubernetes authorization tokens](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
+for talking to the k8s API. In the future this could be minted by the k8s
+MCP server and passed in the original fault event.
 
 **Non-blocking, async architecture** - the MCP listeners, agent runners,
 and most of the system is just a big event driven loop that can run things
@@ -224,9 +229,9 @@ Along with the readonly kubeconfig you can have high confidence nothing
 weird is going to happen, but agent containment and security measures could
 go much deeper in practice.
 
-**Real-time triage runner information** - NATS messaging is used to emit
+**Real-time triage runner information** - [NATS messaging](https://nats.io/) is used to emit
 updates on the triage run at not only the start and end of the run, but
-also (if you use Claude Code only) it triggers on the PreToolUse hook and
+also (if you use Claude Code only) it triggers on the [PreToolUse hook](https://docs.anthropic.com/en/docs/claude-code/hooks) and
 emits updates as Claude Code is running tools. You can see in real-time
 what the agent is doing, which is pretty cool and even sparks a bunch of
 ideas of what you could do with it from a security perspective.
