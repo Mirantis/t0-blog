@@ -211,25 +211,25 @@ screenshots alone. Most of which I implemented just because I could and not
 directly in service of achieving the objectives of the POC. But they are
 cool, so I'll just mention them here briefly.
 
-**Scoped and timebound Kube tokens** - it's only a manual process right
+*Scoped and timebound Kube tokens* - it's only a manual process right
 now, but the triage agents are passed read-only scope and time bound
 [Kubernetes authorization tokens](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
 for talking to the k8s API. In the future this could be minted by the k8s
 MCP server and passed in the original fault event.
 
-**Non-blocking, async architecture** - the MCP listeners, agent runners,
+*Non-blocking, async architecture* - the MCP listeners, agent runners,
 and most of the system is just a big event driven loop that can run things
 in parallel, so listen to N number of MCP servers, launch N number of
 agents. The only place serialized was to have a single triage agent talk to
 a k8s server at a time during investigations.
 
-**Agent containment** - In addition to running in a sandboxed limited Linux
+*Agent containment* - In addition to running in a sandboxed limited Linux
 container, the agents also are scoped about what tools they can execute.
 Along with the readonly kubeconfig you can have high confidence nothing
 weird is going to happen, but agent containment and security measures could
 go much deeper in practice.
 
-**Real-time triage runner information** - [NATS messaging](https://nats.io/) is used to emit
+*Real-time triage runner information* - [NATS messaging](https://nats.io/) is used to emit
 updates on the triage run at not only the start and end of the run, but
 also (if you use Claude Code only) it triggers on the [PreToolUse hook](https://docs.anthropic.com/en/docs/claude-code/hooks) and
 emits updates as Claude Code is running tools. You can see in real-time
