@@ -3,7 +3,7 @@ title: "How Model Context Protocol (MCP) Changes AIOps"
 
 slug: "mcp-changes-aiops"
 
-date: 2025-01-06T00:00:00Z
+date: 2026-01-06T00:00:00Z
 
 author: "Randy Bias"
 

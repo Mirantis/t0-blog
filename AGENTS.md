@@ -100,6 +100,7 @@ After pushing commits, always verify the build and deployment:
    Monitor an active deployment in real-time.
 
 4. **Check the preview site**:
+   - **IMPORTANT**: Set `draft: false` in frontmatter before pushing - GitHub Pages does not render draft posts (unlike local `hugo server -D`)
    - Access your fork's GitHub Pages preview URL (typically `https://<username>.github.io/<repo-name>/`)
    - Verify your post appears correctly with images displaying properly
    - Test all links and formatting before creating a PR to production
