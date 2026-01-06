@@ -94,7 +94,7 @@ would be easy to reuse existing tooling.
 
 So Nightcrier was born:
 
-![Nightcrier Architecture](/images/mcp-changes-aiops/nightcrier-architecture.png)
+![Nightcrier Architecture](../images/mcp-changes-aiops/nightcrier-architecture.png)
 
 Nightcrier, at its heart, is a very simple system. It is composed of:
 
@@ -175,14 +175,14 @@ Let's see some screenshots and relevant context!
 
 ### Investigation Reports
 
-![Investigation Report](/images/mcp-changes-aiops/investigation-report.png)
+![Investigation Report](../images/mcp-changes-aiops/investigation-report.png)
 
 The beginning of an example investigation report, rendered in HTML from the
 original Markdown output by the agent.
 
 ### Dev UI for Local Ease of Use
 
-![Dev UI](/images/mcp-changes-aiops/dev-ui.png)
+![Dev UI](../images/mcp-changes-aiops/dev-ui.png)
 
 Just a simple local user interface while developing to have some easier
 visualizations[^2].
