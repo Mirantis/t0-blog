@@ -59,17 +59,53 @@ When working with AI agents on blog posts:
 - **IMPORTANT**: Tags and categories must never overlap. If a term is used as a category (e.g., `operations`, `engineering`), do not also use it as a tag. Keep the taxonomies separate and distinct.
 
 ## Assets & Images
-- Create the directory for post images: `mkdir -p assets/images/<slug>/` where `<slug>` matches the post's slug or a descriptive name derived from the filename.
-- Copy image files to `assets/images/<slug>/`; keep files under ~1 MB; prefer PNG for screenshots, JPG for photos.
-- **IMPORTANT**: Reference the cover/featured image in front matter WITH a leading slash: `image: "/images/<slug>/filename.png"` (note: Hugo processes `assets/images/` and serves it at `/images/`). See `content/posts/2025/claude-k8s-triage.md` as the reference format.
-- Set `slug: "<slug>"` in front matter to keep URLs stable across environments.
-- Avoid using emoji shortcodes in posts as they may cause build failures if the theme doesn't support them.
-- Example workflow:
-  ```bash
-  mkdir -p assets/images/anthropic-agent-skills-public-domain
-  cp ~/Downloads/cover-image.png assets/images/anthropic-agent-skills-public-domain/
-  # Then in frontmatter: image: "/images/anthropic-agent-skills-public-domain/cover-image.png"
-  ```
+
+**IMPORTANT**: There are TWO different image locations with different path formats:
+
+### Cover/Featured Images (frontmatter)
+- Location: `assets/images/<slug>/`
+- Path format in frontmatter: `/images/<slug>/filename.png` (absolute path with leading slash)
+- Hugo's asset pipeline processes these automatically
+
+### Inline Images (markdown content)
+- Location: `static/images/<slug>/`
+- Path format in markdown: `../images/<slug>/filename.png` (relative path)
+- These are served directly without processing
+
+### Why two locations?
+- `assets/` images are processed by Hugo's asset pipeline (used for frontmatter `image:` field)
+- `static/` images are served directly (required for inline markdown images to work on both production and GitHub Pages preview)
+- Using absolute paths (`/images/...`) for inline images breaks on GitHub Pages subdirectory previews
+
+### Image Guidelines
+- Keep files under ~1 MB; prefer PNG for screenshots, JPG for photos
+- Set `slug: "<slug>"` in front matter to keep URLs stable across environments
+- Avoid using emoji shortcodes in posts as they may cause build failures
+
+### Example workflow:
+```bash
+# Create directories for both locations
+mkdir -p assets/images/my-post-slug
+mkdir -p static/images/my-post-slug
+
+# Copy cover image to assets (for frontmatter)
+cp ~/Downloads/cover.png assets/images/my-post-slug/
+
+# Copy inline images to static (for markdown content)
+cp ~/Downloads/screenshot.png static/images/my-post-slug/
+```
+
+In frontmatter:
+```yaml
+image: "/images/my-post-slug/cover.png"
+```
+
+In markdown content:
+```markdown
+![Screenshot](../images/my-post-slug/screenshot.png)
+```
+
+See `content/posts/2025/claude-k8s-triage.md` as the reference format.
 
 ## Preview & Build
 - Local preview with live reload: `npm run dev` (runs Tailwind watch + Hugo server at `http://localhost:1313`).
