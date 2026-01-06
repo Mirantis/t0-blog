@@ -224,7 +224,7 @@ agents. The only place serialized was to have a single triage agent talk to
 a k8s server at a time during investigations.
 
 *Agent containment* - In addition to running in a sandboxed limited Linux
-container, the agents are also scoped in what tools they can execute.
+container, the agents are also restricted to specific tools they can execute.
 Along with the readonly kubeconfig you can have high confidence nothing
 weird is going to happen, but agent containment and security measures could
 go much deeper in practice.

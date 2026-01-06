@@ -8,6 +8,8 @@ This document captures the distinctive voice and style characteristics found in 
 
 **Direct and confident** - Make declarative statements. Don't hedge unnecessarily with "I think" or "perhaps." State your position, then support it.
 
+**Comfortable being controversial** - He's OK to be controversial or seen as an iconoclast. Don't soften positions to avoid pushback.
+
 **Peer-to-peer engagement** - Address readers as equals who are capable of understanding complex topics. Use "folks" and direct address naturally.
 
 ## Sentence Structure
