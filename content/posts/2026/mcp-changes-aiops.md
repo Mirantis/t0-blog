@@ -19,7 +19,7 @@ image: "/images/mcp-changes-aiops/cover.jpeg"
 ---
 
 [Sometimes you just have to scratch an itch.](/agents-dont-understand-ops/)
-So, over this recent holiday season when things were slow I decided to test
+So, over this recent holiday season when things were slow, I decided to test
 some ideas I had. Namely, how will [Model Context Protocol (MCP)](https://modelcontextprotocol.io/),
 Agent Skills, and general purpose agents impact operations? Not software development, but IT operations and
 the management of systems, networking, storage, virtualization, containers,
@@ -149,8 +149,8 @@ kinds of skills and provide access to ALL kinds of MCP servers at the same
 time and let the agent make its own decisions. This was out of scope for
 this POC, but imagine, for example, that you had a bespoke backend process
 running on Azure with an MCP server built specifically for that backend
-that connected to your existing telemetry systems and that could then
-trigger events when something happened in production and that all of the
+that connected to your existing telemetry systems and could trigger events
+when something happened in production. You'd have access to all of the
 following:
 
 - Azure troubleshooting skills and the Azure-managed MCP endpoint
@@ -206,7 +206,7 @@ provided to the triage agents and their output as well.
 
 ### A Few Quick Sidenotes
 
-There are a bunch of small little nuances that you won't notice from
+There are a bunch of little nuances that you won't notice from
 screenshots alone. Most of which I implemented just because I could and not
 directly in service of achieving the objectives of the POC. But they are
 cool, so I'll just mention them here briefly.
@@ -224,7 +224,7 @@ agents. The only place serialized was to have a single triage agent talk to
 a k8s server at a time during investigations.
 
 *Agent containment* - In addition to running in a sandboxed limited Linux
-container, the agents also are scoped about what tools they can execute.
+container, the agents are also scoped in what tools they can execute.
 Along with the readonly kubeconfig you can have high confidence nothing
 weird is going to happen, but agent containment and security measures could
 go much deeper in practice.
@@ -252,7 +252,7 @@ imagine if:
   trigger a different, non-triage agent to take remediation steps
 - On registration of a new distributed system to be monitored (k8s or
   other), you can launch a "mapping agent" that would build a dependency
-  graph of the systems environment
+  graph of the system's environment
 
 The future may not be evenly distributed yet, but I'd like to see it get
 there!
