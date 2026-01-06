@@ -192,7 +192,7 @@ original Markdown output by the agent.
 Just a simple local user interface while developing to have some easier
 visualizations[^2].
 
-### Example Context, Reports, Etc
+### Example Context, Reports, Source, Etc
 
 I thought I would also share some of the current initial context that is
 provided to the triage agents and their output as well.
@@ -203,6 +203,10 @@ provided to the triage agents and their output as well.
   [here](https://gist.github.com/randybias/f43fa21d3f8911f84c96f411b34109b1)
   and the original markdown is
   [here](https://gist.githubusercontent.com/randybias/f43fa21d3f8911f84c96f411b34109b1/raw/ad5a031e22e32a3ec69856360bfaa75eefb69a03/nightcrier-investigation-report.md)
+
+I'm not publishing the code as it needs some documentation loving first and
+it was just a POC, but you could easily find it if you wanted to.  It is
+not hidden[^3].
 
 ### A Few Quick Sidenotes
 
@@ -268,3 +272,9 @@ there!
     securing regular MCP servers with TLS+auth+guardrails using AI agent
     gateways and then wiring all of this up with tokens, distributed auth
     and so on.
+
+[^3]: A quick note, I did have to modify an existing Kubernetes MCP server
+    to make Server Sent Events (SSE) working over Streaming HTTP.  If you
+    were to play around with the system you would need that fork as well.
+    It is also easily found if you look for it.
+
