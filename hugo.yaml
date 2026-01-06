@@ -28,6 +28,9 @@ params:
   mainSections: posts
   social:
     github: https://github.com/Mirantis
+  mermaid:
+    theme: "dark"
+    align: "center"
 
 # Menu configuration
 menu:
