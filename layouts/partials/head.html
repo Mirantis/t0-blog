@@ -1,0 +1,15 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Dynamic title for SEO -->
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<!-- Dynamic description for SEO -->
+<meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Params.description }}{{ end }}">
+{{- partialCached "head/css.html" . -}}
+{{- partialCached "head/favicon.html" . -}}
+{{- /* template "_internal/google_analytics.html" . */ -}}
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-iIWIpqKtTs4rDaO0UGc43.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
