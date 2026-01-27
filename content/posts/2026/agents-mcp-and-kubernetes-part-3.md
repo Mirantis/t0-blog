@@ -3,7 +3,7 @@
 title: "Agents, MCP, and Kubernetes, Part 3"
 
 # Publication date - automatically set to current date/time
-date: 2026-01-26T10:00:00Z
+date: 2026-01-27T11:07:00Z
 
 # Author name - replace with your name
 author: "Prashant Ramhit & Yevhen Khvastunov"
@@ -35,11 +35,12 @@ tags:
   - AI agents
   - automation
   - AIops
+  - Guardrails
 
 categories:
   - engineering
   - tutorials
-  - AI/ML
+  - security
 
 # Set to false when ready to publish
 draft: false
