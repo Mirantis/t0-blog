@@ -3,7 +3,7 @@
 title: "Running WebAssembly Workloads on k0s: A Complete Guide"
 
 # Publication date - automatically set to current date/time
-date: 2026-01-27T11:10:00Z
+date: 2026-01-28T18:58:00Z
 
 # Author name - replace with your name
 author: "Prashant Ramhit"
