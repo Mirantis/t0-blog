@@ -41,7 +41,7 @@ categories:
 # Set to false when ready to publish
 draft: false
 
-description: "Learn how to deploy AI agents and Model Context Protocol (MCP) servers on Kubernetes to build secure, scalable autonomous systems. Part 1 of a three-part series exploring production-ready agentic architecture."
+description: "Learn how to deploy AI agents and Model Context Protocol (MCP) servers on Kubernetes to build secure, scalable autonomous systems. Part 1 of a four-part series exploring production-ready agentic architecture."
 
 # Series information
 series: ["Agents, MCP, and Kubernetes"]
@@ -61,7 +61,7 @@ image: "images/agents-mcp-and-kubernetes/part-1.png"
 
 ## Introduction
 
-In this three part series, I want to share my recent findings from deploying AI agents and Model Context Protocol (MCP) servers and related tools on Kubernetes. At Mirantis, I've been working on a number of R&D projects in a small skunkworks team focused on "agentic AI." While it's still the early days in terms of determining "agentic best practices," some emerging patterns and anti-patterns are already gaining ground. One emerging pattern is the use of MCP [^1] as the de facto _lingua franca_ of agent-to-tool integration. Another is the use of Kubernetes as the platform on top of which everything runs. Anti-patterns include building MCP servers that have 1:1 functionality of their REST API equivalent.
+In this four part series, I want to share my recent findings from deploying AI agents and Model Context Protocol (MCP) servers and related tools on Kubernetes. At Mirantis, I've been working on a number of R&D projects in a small skunkworks team focused on "agentic AI." While it's still the early days in terms of determining "agentic best practices," some emerging patterns and anti-patterns are already gaining ground. One emerging pattern is the use of MCP [^1] as the de facto _lingua franca_ of agent-to-tool integration. Another is the use of Kubernetes as the platform on top of which everything runs. Anti-patterns include building MCP servers that have 1:1 functionality of their REST API equivalent.
 
 In this first part of the series, we will focus exclusively on the baseline of deploying agents and MCP servers on Kubernetes, using an example multi-agent workflow. In the subsequent parts, we will discuss how to add more advanced security-related features for locking down and hardening your agents and tools for production usage.
 
