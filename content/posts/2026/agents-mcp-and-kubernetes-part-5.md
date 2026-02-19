@@ -85,7 +85,7 @@ Depending on context, it can mean rate limits, prompt filtering, output classifi
 - **Validating request structure and parameters**, MCP relies on JSON-RPC. A request that doesn't conform to expected structure should be rejected before it ever reaches a backend.
 - **Preventing secret leakage**, PR diffs contain code. Code sometimes contains credentials. We need to stop those from flowing into LLM prompts.
 - **Controlling request frequency and cost**, agents can amplify API calls fast, especially when retries or loops are involved. Rate limits at the listener level keep this bounded.
-- **Recording enforcement decisions**, without enforcement metrics, there is no way to confirm that policies are working correctly. Every enforcement event needs to be logged and measurable.
+- **Recording enforcement decisions**, without enforcement metrics, there is no way to confirm that policies are working correctly. Every enforcement event needs to be logged and measured.
 
 The separation of responsibilities matters here. Connectivity is enforced by Istio Ambient Mode at Layer 4. Behavioral validation is handled by AgentGateway at Layer 7. Each layer handles a different class of failure, and neither replaces the other.
 
