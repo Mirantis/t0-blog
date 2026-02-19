@@ -178,6 +178,8 @@ This is a simplified example. The actual rules cover a set of command patterns w
 
 These constraints are updated over time. When we onboard a new MCP server or add an agent capability, we include a review step to assess whether any new command patterns need to be blocked.
 
+But for MCP servers with a stable, well-defined command surface, a whitelist approach is preferable as only permitted methods are forwarded, and anything outside that set is rejected by default. We used a deny list here because the tool surfaces we were working with, were still evolving, but in a production system where tool interfaces are versioned and controlled, a whitelist eliminates the class of problem entirely.
+
 ## Rate Limits and Cost Controls
 
 Without per-listener rate limits, a retry loop, a workflow that expands on large inputs, or a model that calls a tool repeatedly before concluding can generate far more requests than expected. The first signal is an unexpected spike in cloud spend at the end of the month.
