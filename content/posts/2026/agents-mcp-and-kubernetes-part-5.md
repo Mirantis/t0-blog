@@ -94,7 +94,7 @@ The separation of responsibilities matters here. Connectivity is enforced by Ist
 
 Every request in our system passes through two independent checks before reaching its destination.
 
-At Layer 4, Istio provides SPIFFE-based workload identity, mutual TLS encryption, and explicit service-to-service authorization. Only authenticated workloads can establish connections at all. This is the foundation from Part 2 and hasn't changed.
+At Layer 4, Istio provides SPIFFE-based workload identity, mutual TLS encryption, and explicit service-to-service authorization. Only authenticated workloads can establish connections at all. This is the foundation from Part 2 and it hasn't changed.
 
 At Layer 7, AgentGateway evaluates request headers and identity metadata, validates JSON-RPC structure for MCP traffic, applies route-level authorization policies, inspects payload content via CEL expressions, and enforces rate limits per listener or backend.
 
