@@ -3,7 +3,7 @@
 title: "Agents, MCP, and Kubernetes, Part 5"
 
 # Publication date - automatically set to current date/time
-date: 2026-02-18T11:07:00Z
+date: 2026-02-24T11:07:00Z
 
 # Author name - replace with your name
 author: "Prashant Ramhit & Yevhen Khvastunov"
