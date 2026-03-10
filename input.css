@@ -144,7 +144,7 @@
 			}
 			article.prose {
 				color: white !important;
-				strong, h2, h3, a {
+				h1, strong, h2, h3, a, code, p, li, th, td {
 					color: white;
 				}
 				background-color: transparent !important;

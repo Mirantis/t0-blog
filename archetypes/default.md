@@ -8,6 +8,9 @@ date: {{ .Date }}
 # Author name - replace with your name
 author: ""
 
+# keywords - replace with your keywords for SEO and post listings (e.g., kubernetes, capi, machinepool,platform engineering, devops)
+keywords: []
+
 # Tags for categorizing content (e.g., automation, mlops, devops, aiops)
 tags: []
 
