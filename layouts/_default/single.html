@@ -49,9 +49,8 @@
       
     </header>
 
+    {{- if .Params.image }}
     <figure id="featureimage" class="rounded-xl aspect-video">
-
-      {{- if .Params.image }}
 
         {{- if ( strings.HasPrefix .Params.image "http" ) }}
 
@@ -66,13 +65,12 @@
 
         {{- end }}
 
-      {{- end }}
-
       {{- if ( isset .Params "caption" ) }}
         <figcaption class="text-center italic text-xs">{{ .Params.caption }}</figcaption>
       {{- end }}
 
     </figure>
+    {{- end }}
 
     <div id="content" class="mb-14">
       <!-- Content -->

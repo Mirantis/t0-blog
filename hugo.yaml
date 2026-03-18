@@ -52,7 +52,7 @@ markup:
       unsafe: true
   highlight:
     style: monokai
-    lineNos: true
+    lineNos: false
 
 # Output formats
 outputs:

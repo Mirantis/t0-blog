@@ -1,0 +1,28 @@
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.13.0/dist/mermaid.esm.min.mjs';
+
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    themeVariables: {
+      background: '#272822',
+      primaryColor: '#f92672',
+      primaryTextColor: '#f8f8f2',
+      primaryBorderColor: '#75715e',
+      lineColor: '#a6e22e',
+      secondaryColor: '#49483e',
+      tertiaryColor: '#3e3d32'
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('code.language-mermaid').forEach((codeEl) => {
+      const pre = codeEl.parentElement;
+      const mermaidPre = document.createElement('pre');
+      mermaidPre.className = 'mermaid';
+      mermaidPre.textContent = codeEl.textContent;
+      pre.parentElement.replaceChild(mermaidPre, pre);
+    });
+    mermaid.run();
+  });
+</script>
