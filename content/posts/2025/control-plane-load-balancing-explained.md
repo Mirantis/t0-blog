@@ -22,7 +22,7 @@ draft: false
 # Brief description/summary of the post (recommended for SEO and post listings)
 description: "Learn how k0s implements Control Plane Load Balancing (CPLB) for highly available Kubernetes clusters"
 
-image: "images/control-plane-load-balancing-explained/feature-image.png"
+image: "images/control-plane-load-balancing-explained/feature-image.jpg"
 ---
 
 A highly available Kubernetes cluster requires, among other things, a highly available control plane. In order to achieve this we need multiple apiserver replicas with a highly available load balancer. You can read more about [high availability in k0s documentation](https://docs.k0sproject.io/stable/high-availability/).
