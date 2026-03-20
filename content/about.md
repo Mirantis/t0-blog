@@ -2,7 +2,7 @@
 title: "About Tzero"
 date: 2025-10-27T00:00:00Z
 draft: false
-image: images/t0-mirantis.jpeg
+image: images/t0-mirantis.png
 ---
 
 **T minus T to the Zero** (or ... T minus 1) is a blog about the countdown to zero toil in engineering and operations. We provide technical articles for running modern applications (cloud native, AI pipelines, etc) in production with a focus on automation, MLOps, DevOps, and next generation architectures. We believe in using technology to make technologists' lives easier.

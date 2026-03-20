@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Returns accepted extensions for a given MIME type, or empty string if not an image we care about.
+mime_to_exts() {
+  case "$1" in
+    image/png)     echo "png" ;;
+    image/jpeg)    echo "jpg jpeg" ;;
+    image/gif)     echo "gif" ;;
+    image/webp)    echo "webp" ;;
+    image/svg+xml) echo "svg" ;;
+    image/tiff)    echo "tif tiff" ;;
+    image/bmp)     echo "bmp" ;;
+    image/avif)    echo "avif" ;;
+    *)             echo "" ;;
+  esac
+}
+
+errors=0
+
+while IFS= read -r -d '' file; do
+  [ -f "$file" ] || continue
+
+  ext=$(printf '%s' "${file##*.}" | tr '[:upper:]' '[:lower:]')
+  mime=$(file --mime-type -b "$file")
+  allowed=$(mime_to_exts "$mime")
+
+  [ -n "$allowed" ] || continue
+
+  matched=0
+  for valid_ext in $allowed; do
+    if [ "$ext" = "$valid_ext" ]; then
+      matched=1
+      break
+    fi
+  done
+
+  if [ "$matched" -eq 0 ]; then
+    echo "ERROR: image extension mismatch: $file (detected: $mime, extension: .$ext)"
+    errors=$((errors + 1))
+  fi
+done < <(git diff --cached --name-only --diff-filter=ACM -z)
+
+if [ "$errors" -gt 0 ]; then
+  echo "Commit blocked: $errors image(s) have mismatched extensions."
+  exit 1
+fi
