@@ -43,7 +43,7 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        if: inputs.ref == ''
+        if: inputs.ref == '' || github.repository != 'Mirantis/t0-blog'
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
@@ -60,12 +60,12 @@ jobs:
             --baseURL "${{ steps.pages.outputs.base_url || '/' }}/"
 
       - name: Upload artifact
-        if: inputs.ref == ''
+        if: inputs.ref == '' || github.repository != 'Mirantis/t0-blog'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
       - name: Deploy to GitHub Pages
         id: deployment
-        if: inputs.ref == ''
+        if: inputs.ref == '' || github.repository != 'Mirantis/t0-blog'
         uses: actions/deploy-pages@v4
