@@ -10,6 +10,16 @@ on:
         description: 'Git ref to build (branch, tag, or SHA). Leave empty for default deployment.'
         required: false
         default: ''
+      build_future:
+        description: 'Build posts with future dates'
+        required: false
+        type: boolean
+        default: false
+      build_drafts:
+        description: 'Build draft posts'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -60,6 +70,8 @@ jobs:
           hugo \
             --gc \
             --minify \
+            ${{ inputs.build_future == true && '--buildFuture' || '' }} \
+            ${{ inputs.build_drafts == true && '--buildDrafts' || '' }} \
             --baseURL "${{ steps.pages.outputs.base_url || '/' }}/"
 
       - name: Upload artifact
