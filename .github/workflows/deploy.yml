@@ -15,6 +15,11 @@ on:
         required: false
         type: boolean
         default: false
+      build_drafts:
+        description: 'Build draft posts'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -66,6 +71,7 @@ jobs:
             --gc \
             --minify \
             ${{ inputs.build_future == true && '--buildFuture' || '' }} \
+            ${{ inputs.build_drafts == true && '--buildDrafts' || '' }} \
             --baseURL "${{ steps.pages.outputs.base_url || '/' }}/"
 
       - name: Upload artifact
