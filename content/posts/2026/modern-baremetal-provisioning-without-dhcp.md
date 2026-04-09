@@ -1,6 +1,6 @@
 ---
 title: "Modern BareMetal Provisioning Without DHCP"
-date: 2026-04-14T00:00:00Z
+date: 2026-04-09T00:00:00Z
 author: "Serhii Ivanov"
 keywords:
   - baremetal provisioning
