@@ -39,8 +39,14 @@
             <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
           </li>
 
+          {{/* Custom reading time: exclude collapsed <details> blocks (e.g. embedded
+               source code) so they don't inflate the estimate. Hugo's built-in
+               .ReadingTime counts all rendered content including hidden text. */}}
           <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2">
-            {{ .ReadingTime }} min read
+            {{- $contentNoDetails := .Content | replaceRE `(?s)<details>.*?</details>` "" -}}
+            {{- $words := countwords $contentNoDetails -}}
+            {{- $readingTime := div (add $words 199) 200 -}}
+            {{ $readingTime }} min read
           </li>
 
         </ul>
