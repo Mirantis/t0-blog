@@ -21,11 +21,11 @@ slug: "modern-baremetal-provisioning-redfish-proxy"
 image: "images/2026/modern-baremetal-provisioning-redfish-proxy/header.png" # 1536 x 1024
 ---
 
-A design for a Redfish proxy whose scripts correct the differences between vendor implementations of the API.
+One proxy process per BMC, a script on every request, and no way for a script to reach anywhere else.
 
 > **Scope:** This is a design sketch, not a shipped or supported product, and nothing here is a deployment recommendation. The examples and diagrams are pseudocode. They show the intended logic, not code you can run. An implementation needs an HTTP server, an embedded script runtime, and BMC helpers that the host controls.
 
-In [Modern BareMetal Provisioning Without PXE](https://t0.mirantis.com/modern-baremetal-provisioning/), we described provisioning with Redfish, UEFI, and boot images built on demand. The [follow-up on provisioning without DHCP](https://t0.mirantis.com/modern-baremetal-provisioning-without-dhcp/) covered image delivery when the expected BMC virtual media path is unavailable.
+In [Modern BareMetal Provisioning Without PXE](https://t0.mirantis.com/modern-baremetal-provisioning/), we described provisioning with [Redfish](https://www.dmtf.org/standards/redfish), UEFI, and boot images built on demand. The [follow-up on provisioning without DHCP](https://t0.mirantis.com/modern-baremetal-provisioning-without-dhcp/) covered image delivery when the expected BMC virtual media path is unavailable.
 
 Both workflows depend on the management API returning the data and supporting the actions the client expects.
 
@@ -145,7 +145,7 @@ flowchart TD
 
 A route that does not accept the method is skipped during selection, so a broader route that does accept it can win instead. Paths that no route claims fall to a configured default handler, which normally forwards and rewrites.
 
-The proxy generates that 405 itself, so there is no upstream header to relay and it has to build one. Answer with an `Allow` listing the methods the path's routes accept, which is the same set the router just consulted. HTTP requires it on every 405, and Redfish requires it again on a 200 from a GET.
+The proxy generates that 405 itself, so there is no upstream header to relay and it has to build one. Answer with an `Allow` listing the methods the path's routes accept, which is the same set the router just consulted. HTTP requires it on every 405 ([RFC 9110, §15.5.6](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.6)), and the [Redfish Specification](https://www.dmtf.org/dsp/DSP0266) requires it again on a 200 from a GET.
 
 The most specific pattern is the one with the most fixed text before its first wildcard, so a longer pattern does not always win. Matching usually settles it before precedence comes up, because a single-segment `*` cannot cross a separator and a shallow pattern therefore never matches a deeper path. Compile the patterns at startup and reject duplicate route paths.
 
@@ -200,9 +200,9 @@ ASYNC FUNCTION derive_serial(system):
     RETURN uppercase(sha256(join(address, manager, id)))
 ```
 
-Both guards do more than test for an empty string. `is_real_serial` rejects the SMBIOS placeholders, because a whole fleet reporting `To be filled by O.E.M.` passes a non-empty check and then collides under one identity. `is_real_uuid` rejects the nil UUID and the same known constants. Keep the UUID's hyphens, since the canonical form is what every other tool reports.
+Both guards do more than test for an empty string. `is_real_serial` rejects the [SMBIOS](https://www.dmtf.org/standards/smbios) placeholders, because a whole fleet reporting `To be filled by O.E.M.` passes a non-empty check and then collides under one identity. `is_real_uuid` rejects the nil UUID and the same known constants. Keep the UUID's hyphens, since the canonical form is what every other tool reports.
 
-Neither guard can do more than that. One process sees one BMC, so it cannot know a UUID was already used elsewhere, and a check that consulted a changing registry would break the determinism this section just asked for. Whitebox and ODM boards do ship one UUID across a production batch, and catching that is the inventory system's job.
+Neither guard can do more than that. One process sees one BMC, so it cannot know a UUID was already used elsewhere, and a check that consulted a changing registry would break the determinism this section just asked for. Some whitebox and ODM boards ship one UUID across a production batch, and catching that is the inventory system's job.
 
 Chassis discovery is the one rung that can fail. If it errors or finds nothing, fall through to the UUID. The mutual-link test is what keeps it honest, because a service that links a system straight to a shared enclosure would otherwise hand the same serial to every occupant. Fall through whenever that test does not hold, rather than guess.
 
@@ -215,13 +215,13 @@ Chassis discovery is the one rung that can fail. If it errors or finds nothing, 
 
 A derived serial is a proxy-generated inventory substitute, not a value the manufacturer attested to, and nothing downstream should treat it as one. Record which machines carry one. If the client needs an identity that survives a management address change, supply a fixed inventory ID through deployment data instead. Do not generate a random value per request, and do not overwrite a valid chassis or component serial.
 
-This corrects only the resource the route matches, which scopes the design to `/redfish/v1/Systems/{id}`. The schema declares two further URIs for a system, both under the composition service, and those are out of scope here. The same field also reaches a client through `GET /redfish/v1/Systems?$expand=.` and through `Chassis`, so either cover those paths too or state plainly that clients must not use them against the proxy.
+This corrects only the resource the route matches, which scopes the design to `/redfish/v1/Systems/{id}`. The schema declares two further URIs for a system, both under resource blocks, and those are out of scope here. The same field also reaches a client through `GET /redfish/v1/Systems?$expand=.` and through `Chassis`, so either cover those paths too or state plainly that clients must not use them against the proxy.
 
 ## Protect the BMC Address and Credentials
 
 Build the runtime with the helper modules and nothing else. No standard networking, filesystem, process, or import surface means a script has no way to reach the network except through a helper, which is what makes the next paragraph a structural property rather than a convention.
 
-The requirement is that a script cannot direct the caller's credentials at a host other than the configured one. The host meets it by keeping the target and the protected headers in the request context, which the BMC helpers read directly. No helper takes a host or an auth value as an argument. Through those helpers a script can read the configured BMC address but has no way to replace it. That is a property of the helper surface, prefer hermetic helpers that depend only on their inputs, and confine the ones that must reach outside.
+The requirement is that a script cannot direct the caller's credentials at a host other than the configured one. The host meets it by keeping the target and the protected headers in the request context, which the BMC helpers read directly. No helper takes a host or an auth value as an argument. Through those helpers a script can read the configured BMC address but has no way to replace it. Prefer hermetic helpers that depend only on their inputs, and confine the ones that must reach outside.
 
 Helpers group by what they can reach:
 
@@ -250,7 +250,7 @@ flowchart TD
 
 `get_resource` and `patch_or_post_resource` are the wrappers a script uses to build its own request. Dispatch requires the script's path to begin with exactly one slash, which rejects an absolute URL and a network-path reference like `//other.host/redfish/v1` alike. It then strips the headers a script may not set and inserts the caller's protected headers, where inserting replaces a value that appending would only have added to.
 
-The upstream HTTP client follows no redirects. Certificate verification is a deployment choice rather than something the design settles. BMC certificates are self-signed almost universally, so a site either pins its own CA bundle, which replaces the public roots, or turns verification off knowingly. A fixed destination does not settle it either way.
+The upstream HTTP client follows no redirects. Certificate verification is a deployment choice rather than something the design settles. In practice, BMC certificates are self-signed almost universally, so a site either pins its own CA bundle, which replaces the public roots, or turns verification off knowingly. A fixed destination does not settle it either way.
 
 This protects the credentials the caller sends as headers. It does nothing for a session token that appears in a request or response body, which a script can read and a handler can copy anywhere it likes, the log included. The renderer redacts and clips the records the host builds, not a string a script hands it.
 
