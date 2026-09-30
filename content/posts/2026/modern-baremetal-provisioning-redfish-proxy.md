@@ -1,6 +1,6 @@
 ---
 title: "Modern BareMetal Provisioning When Redfish Implementations Disagree"
-date: 2026-10-01T00:00:00Z
+date: 2026-09-30T00:00:00Z
 author: "Serhii Ivanov"
 keywords:
   - redfish
